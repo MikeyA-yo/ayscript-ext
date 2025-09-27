@@ -1,4 +1,101 @@
-# ayscript README
+# ayscri# AYScript VS Code Extension
+
+A Visual Studio Code extension that provides comprehensive syntax highlighting support for the AYScript programming language.
+
+## Features
+
+This extension provides:
+- **Syntax Highlighting**: Full syntax highlighting for AYScript files (`.ay`, `.ays`)
+- **Language Support**: Proper recognition of AYScript language constructs
+- **Code Formatting**: Basic indentation and bracket matching
+- **Comment Support**: Line comments (`//`) and block comments (`/* */`)
+- **Auto-completion**: Bracket and quote auto-closing
+
+### Supported Language Features
+
+The extension recognizes and highlights:
+- **Keywords**: `if`, `else`, `while`, `for`, `function`, `var`, `let`, `const`, `class`, `extends`, etc.
+- **Data Types**: `string`, `number`, `boolean`, `object`, `array`, `void`
+- **Operators**: Arithmetic, comparison, logical, and assignment operators
+- **Built-in Functions**: `print`, `println`, `input`, `len`, `push`, `pop`, etc.
+- **String Literals**: Single quotes, double quotes, and template literals with `${}`
+- **Numbers**: Integers, floats, hex, binary, and octal numbers
+- **Comments**: Both single-line and multi-line comments
+
+## File Extensions
+
+The extension automatically activates for files with the following extensions:
+- `.ay` - Standard AYScript files
+- `.ays` - AYScript files (alternative extension)
+
+## Installation
+
+1. Open VS Code
+2. Install the extension from the Extensions marketplace
+3. Create or open an `.ay` or `.ays` file
+4. Enjoy syntax highlighting!
+
+## Sample Code
+
+Here's a sample of AYScript code with syntax highlighting:
+
+```ayscript
+// AYScript Sample
+function greet(name) {
+    if (name) {
+        println(`Hello, ${name}!`);
+    } else {
+        println("Hello, World!");
+    }
+}
+
+class Calculator {
+    add(a, b) {
+        return a + b;
+    }
+}
+
+var calc = new Calculator();
+var result = calc.add(5, 3);
+greet("AYScript Developer");
+```
+
+## Development
+
+To contribute to this extension:
+
+1. Clone the repository
+2. Run `npm install` to install dependencies
+3. Press `F5` to open a new Extension Development Host window
+4. Create a test file with `.ay` extension to test syntax highlighting
+
+### Building
+
+- `npm run compile` - Compile TypeScript
+- `npm run watch` - Compile in watch mode
+- `npm run lint` - Run ESLint
+
+## Known Issues
+
+- Advanced language features like IntelliSense and error checking are not yet implemented
+- Code completion suggestions are basic
+
+## Release Notes
+
+### 0.0.1
+
+Initial release with:
+- Basic syntax highlighting for AYScript
+- Support for `.ay` and `.ays` file extensions
+- Language configuration for comments and brackets
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit issues and pull requests.
+
+## License
+
+This extension is released under the MIT License.README
 
 This is the README for your extension "ayscript". After writing up a brief description, we recommend including the following sections.
 

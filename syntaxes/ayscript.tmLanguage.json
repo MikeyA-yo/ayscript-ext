@@ -1,0 +1,224 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "AYScript",
+    "scopeName": "source.ayscript",
+    "patterns": [
+        {
+            "include": "#def-aliases"
+        },
+        {
+            "include": "#keywords"
+        },
+        {
+            "include": "#strings"
+        },
+        {
+            "include": "#comments"
+        },
+        {
+            "include": "#numbers"
+        },
+        {
+            "include": "#operators"
+        },
+        {
+            "include": "#functions"
+        },
+        {
+            "include": "#variables"
+        }
+    ],
+    "repository": {
+        "def-aliases": {
+            "patterns": [
+                {
+                    "name": "meta.def-alias.ayscript",
+                    "begin": "\\b(def)\\s+([a-zA-Z_][a-zA-Z0-9_]*)\\s*(->)\\s*",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "keyword.declaration.ayscript"
+                        },
+                        "2": {
+                            "name": "entity.name.type.alias.ayscript"
+                        },
+                        "3": {
+                            "name": "keyword.operator.arrow.ayscript"
+                        }
+                    },
+                    "end": "$",
+                    "patterns": [
+                        {
+                            "name": "entity.name.function.target.ayscript",
+                            "match": "[a-zA-Z_][a-zA-Z0-9_]*"
+                        }
+                    ]
+                }
+            ]
+        },
+        "keywords": {
+            "patterns": [
+                {
+                    "name": "keyword.control.ayscript",
+                    "match": "\\b(if|else|elif|while|for|break|continue|return|true|false|null|undefined)\\b"
+                },
+                {
+                    "name": "keyword.declaration.ayscript",
+                    "match": "\\b(l|f|def|var)\\b"
+                },
+                {
+                    "name": "keyword.other.ayscript",
+                    "match": "\\b(class|extends|import|export|from|as|new|this|super|static|public|private|protected)\\b"
+                },
+                {
+                    "name": "storage.type.ayscript",
+                    "match": "\\b(string|number|boolean|object|array|void)\\b"
+                }
+            ]
+        },
+        "strings": {
+            "patterns": [
+                {
+                    "name": "string.quoted.double.ayscript",
+                    "begin": "\"",
+                    "end": "\"",
+                    "patterns": [
+                        {
+                            "name": "constant.character.escape.ayscript",
+                            "match": "\\\\."
+                        }
+                    ]
+                },
+                {
+                    "name": "string.quoted.single.ayscript",
+                    "begin": "'",
+                    "end": "'",
+                    "patterns": [
+                        {
+                            "name": "constant.character.escape.ayscript",
+                            "match": "\\\\."
+                        }
+                    ]
+                },
+                {
+                    "name": "string.template.ayscript",
+                    "begin": "`",
+                    "end": "`",
+                    "patterns": [
+                        {
+                            "name": "meta.embedded.line.ayscript",
+                            "begin": "\\$\\{",
+                            "end": "\\}",
+                            "patterns": [
+                                {
+                                    "include": "$self"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "comments": {
+            "patterns": [
+                {
+                    "name": "comment.line.double-slash.ayscript",
+                    "begin": "//",
+                    "end": "$"
+                },
+                {
+                    "name": "comment.block.ayscript",
+                    "begin": "/\\*",
+                    "end": "\\*/"
+                }
+            ]
+        },
+        "numbers": {
+            "patterns": [
+                {
+                    "name": "constant.numeric.ayscript",
+                    "match": "\\b([0-9]+\\.?[0-9]*([eE][+-]?[0-9]+)?|0[xX][0-9a-fA-F]+|0[bB][01]+|0[oO][0-7]+)\\b"
+                }
+            ]
+        },
+        "operators": {
+            "patterns": [
+                {
+                    "name": "keyword.operator.arrow.ayscript",
+                    "match": "->"
+                },
+                {
+                    "name": "keyword.operator.assignment.ayscript",
+                    "match": "=|\\+=|\\-=|\\*=|\\/=|%=|\\|=|&=|\\^=|<<=|>>="
+                },
+                {
+                    "name": "keyword.operator.comparison.ayscript",
+                    "match": "==|!=|===|!==|<|>|<=|>=|<>"
+                },
+                {
+                    "name": "keyword.operator.logical.ayscript",
+                    "match": "&&|\\|\\||!"
+                },
+                {
+                    "name": "keyword.operator.arithmetic.ayscript",
+                    "match": "\\+|\\-|\\*|\\/|%|\\+\\+|\\-\\-"
+                },
+                {
+                    "name": "keyword.operator.bitwise.ayscript",
+                    "match": "&|\\||\\^|~|<<|>>"
+                }
+            ]
+        },
+        "functions": {
+            "patterns": [
+                {
+                    "name": "entity.name.function.ayscript",
+                    "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\s*(?=\\()"
+                },
+                {
+                    "name": "support.function.core.ayscript",
+                    "match": "\\b(print|writestdout|input|coolPrint|fancyLog|stylishWarn|errorPop|errorlog|rand|randInt|round)\\b"
+                },
+                {
+                    "name": "support.function.math.ayscript",
+                    "match": "\\b(abs|max|min|pow|sqrt|floor|ceil|exp|log|log10|log2|sin|cos|tan|asin|acos|atan|atan2|sec|csc|cot|sind|cosd|tand|toRadians|toDegrees|sinh|cosh|tanh|asinh|acosh|atanh|pi|e)\\b"
+                },
+                {
+                    "name": "support.function.string.ayscript",
+                    "match": "\\b(len|upper|lower|split|reverse|join|includes)\\b"
+                },
+                {
+                    "name": "support.function.array.ayscript",
+                    "match": "\\b(push|pop|sort|filter|map|slice|splice|newArr)\\b"
+                },
+                {
+                    "name": "support.function.file.ayscript",
+                    "match": "\\b(read|write)\\b"
+                },
+                {
+                    "name": "support.function.http.ayscript",
+                    "match": "\\b(httpGet|httpPost|httpPut|httpDelete|createHttpServer|startHttpServer|stopHttpServer|createJsonResponse|createErrorResponse|createSuccessResponse|buildHttpUrl|buildQueryString|parseJson|stringifyJson|getHttpStatusMessage|logHttpRequest|logHttpResponse|awaitPromise|awaitPromiseWithTimeout|awaitAll|logPromise)\\b"
+                },
+                {
+                    "name": "support.function.date.ayscript",
+                    "match": "\\b(now|timestamp|dateToISO|dateToLocal|dateToShort|dateToLong|dateDiffInDays|dateDiffInHours|dateDiffInMinutes|dateDiffInSeconds|dateAdd|dateSubtract|dateStartOf|dateEndOf|isValidDateFormat)\\b"
+                },
+                {
+                    "name": "support.function.timer.ayscript",
+                    "match": "\\b(Timeout|Interval|stopTimeout|stopInterval)\\b"
+                }
+            ]
+        },
+        "variables": {
+            "patterns": [
+                {
+                    "name": "variable.other.constant.ayscript",
+                    "match": "\\b[A-Z][A-Z0-9_]*\\b"
+                },
+                {
+                    "name": "variable.other.ayscript",
+                    "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\b"
+                }
+            ]
+        }
+    }
+}
