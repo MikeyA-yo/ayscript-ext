@@ -52,5 +52,10 @@
     "typescript": "^5.9.2",
     "@vscode/test-cli": "^0.0.11",
     "@vscode/test-electron": "^2.5.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MikeyA-yo/ayscript-ext"
+  },
+  "publisher": "AyomideEmmanuelOluwatola"
 }

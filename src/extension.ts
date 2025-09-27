@@ -155,13 +155,43 @@ function findUserDefinedSymbol(document: vscode.TextDocument, symbolName: string
 		variableRegex.lastIndex = 0;
 		match = variableRegex.exec(line);
 		if (match) {
-			const value = match[1].trim().replace(/[;,]$/, ''); // Remove trailing semicolon/comma
+			let value = match[1].trim().replace(/[;,]$/, ''); // Remove trailing semicolon/comma
 			const declarationType = line.match(/\b(l|var|let|const)\b/)?.[1] || 'var';
+			
+			// Handle arrays specially - don't show all elements
+			let displayValue = value;
+			if (value.startsWith('[') && value.endsWith(']')) {
+				// It's an array
+				const arrayContent = value.slice(1, -1).trim();
+				if (arrayContent.length === 0) {
+					displayValue = 'Array<unknown>[]';
+				} else {
+					// Try to infer element type from first element
+					const firstElement = arrayContent.split(',')[0].trim();
+					let elementType = 'unknown';
+					
+					if (firstElement.startsWith('"') || firstElement.startsWith("'") || firstElement.startsWith('`')) {
+						elementType = 'string';
+					} else if (/^\d+\.?\d*$/.test(firstElement)) {
+						elementType = 'number';
+					} else if (firstElement === 'true' || firstElement === 'false') {
+						elementType = 'boolean';
+					} else if (firstElement.startsWith('{')) {
+						elementType = 'object';
+					}
+					
+					displayValue = `Array<${elementType}>[]`;
+				}
+			} else if (value.startsWith('{') && value.endsWith('}')) {
+				// It's an object
+				displayValue = 'Object{}';
+			}
+			
 			return {
 				type: 'variable',
-				declaration: `${declarationType} ${symbolName} = ${value}`,
+				declaration: `${declarationType} ${symbolName}: ${displayValue}`,
 				declarationType: declarationType === 'l' ? 'AY' : declarationType,
-				value: value,
+				value: displayValue,
 				location: i
 			};
 		}
