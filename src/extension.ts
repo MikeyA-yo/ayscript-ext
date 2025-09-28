@@ -99,6 +99,9 @@ const keywords = new Map<string, { description: string; example: string }>([
 	['return', { description: 'Return statement', example: 'return value;' }],
 	['break', { description: 'Break out of loop', example: 'break;' }],
 	['continue', { description: 'Continue to next iteration', example: 'continue;' }],
+	['true', { description: 'Boolean true value', example: 'l isTrue = true;' }],
+	['false', { description: 'Boolean false value', example: 'l isFalse = false;' }],
+	['null', { description: 'Null value', example: 'l nothing = null;' }],
 ]);
 
 // Interface for user-defined symbols

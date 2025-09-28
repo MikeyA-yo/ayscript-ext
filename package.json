@@ -2,7 +2,7 @@
   "name": "ayscript",
   "displayName": "AYScript",
   "description": "AYScript language support with syntax highlighting",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.104.0"
   },
@@ -57,5 +57,7 @@
     "type": "git",
     "url": "https://github.com/MikeyA-yo/ayscript-ext"
   },
-  "publisher": "AyomideEmmanuelOluwatola"
+  "publisher": "AyomideEmmanuelOluwatola",
+  "icon":"./media/ayscript.jpg",
+  "license": "MIT"
 }
